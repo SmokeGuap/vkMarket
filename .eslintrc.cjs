@@ -11,7 +11,12 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   plugins: ['import', 'react-refresh'],
-  rules: { 
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
+  },
+  rules: {
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
@@ -34,6 +39,6 @@ module.exports = {
         ],
         'newlines-between': 'always',
       },
-    ],  
+    ],
   },
 };

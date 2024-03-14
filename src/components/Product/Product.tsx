@@ -1,9 +1,9 @@
-import { Button, ButtonGroup, Div, Spacing, Text } from '@vkontakte/vkui';
 import {
   Icon24AddOutline,
   Icon24DeleteOutline,
   Icon24MinusOutline,
 } from '@vkontakte/icons';
+import { Button, ButtonGroup, Div, Spacing, Text } from '@vkontakte/vkui';
 import { FC } from 'react';
 
 import { useAppDispatch } from 'src/hooks';

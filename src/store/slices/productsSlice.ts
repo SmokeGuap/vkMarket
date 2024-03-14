@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
 import { ProductType } from 'src/types';
 
 type ProductsStateType = { products: ProductType[] };
