@@ -4,7 +4,7 @@ import eslint from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/vk-market/',
+  base: '/vkMarket/',
   plugins: [react(), eslint()],
   resolve: {
     alias: {
