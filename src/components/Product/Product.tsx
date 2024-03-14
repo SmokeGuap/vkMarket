@@ -16,7 +16,7 @@ const Product: FC<ProductProps> = (props) => {
       <Text className={styles.title}>{product.title}</Text>
       <Spacing size={16} />
       <Text>В корзине: {product.quantity}</Text>
-      <Text>Цена: {product.price} рублей</Text>
+      <Text>Цена: {product.price} руб.</Text>
     </Div>
   );
 };
