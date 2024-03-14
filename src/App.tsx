@@ -1,7 +1,5 @@
 import {
   AppRoot,
-  Group,
-  Header,
   Panel,
   PanelHeader,
   SplitCol,
@@ -11,7 +9,7 @@ import {
 } from '@vkontakte/vkui';
 import { FC } from 'react';
 
-import { Products } from 'src/components';
+import { Cart, Products } from 'src/components';
 
 const App: FC = () => {
   const platform = usePlatform();
@@ -30,9 +28,7 @@ const App: FC = () => {
                   <Products />
                 </SplitCol>
                 <SplitCol width={'25%'} autoSpaced>
-                  <Group
-                    header={<Header mode='secondary'>Корзина</Header>}
-                  ></Group>
+                  <Cart />
                 </SplitCol>
               </SplitLayout>
             </Panel>
