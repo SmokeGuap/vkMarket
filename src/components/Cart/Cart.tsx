@@ -1,4 +1,4 @@
-import { Group, Header, Text } from '@vkontakte/vkui';
+import { FixedLayout, Group, Header, Spacing, Text } from '@vkontakte/vkui';
 import { FC, useEffect, useState } from 'react';
 
 import { useAppSelector } from 'src/hooks';
@@ -20,9 +20,12 @@ const Cart: FC = () => {
   }, [products]);
 
   return (
-    <Group header={<Header mode='secondary'>Корзина</Header>}>
-      <Text className={styles.text}>Итого: {cartTotal} руб.</Text>
-    </Group>
+    <FixedLayout vertical='top'>
+      <Spacing size={16} />
+      <Group header={<Header mode='secondary'>Корзина</Header>}>
+        <Text className={styles.text}>Итого: {cartTotal} руб.</Text>
+      </Group>
+    </FixedLayout>
   );
 };
 
