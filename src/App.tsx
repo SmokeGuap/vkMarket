@@ -9,8 +9,11 @@ import {
   View,
   usePlatform,
 } from '@vkontakte/vkui';
+import { FC } from 'react';
 
-const App = () => {
+import { Products } from 'src/components';
+
+const App: FC = () => {
   const platform = usePlatform();
 
   return (
@@ -24,9 +27,7 @@ const App = () => {
               <PanelHeader>VK Маркет</PanelHeader>
               <SplitLayout>
                 <SplitCol width={'75%'} autoSpaced>
-                  <Group
-                    header={<Header mode='secondary'>Товары</Header>}
-                  ></Group>
+                  <Products />
                 </SplitCol>
                 <SplitCol width={'25%'} autoSpaced>
                   <Group

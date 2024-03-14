@@ -1,4 +1,5 @@
 import BASE_URL from 'src/API/BASE_URL';
+
 import { GetCartResponse } from './getCart.types';
 
 const getCart = async (id: number): Promise<GetCartResponse> => {

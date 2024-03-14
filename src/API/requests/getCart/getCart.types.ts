@@ -1,20 +1,11 @@
+import { ProductType } from 'src/types';
+
 export type GetCartResponse = {
   id: number;
-  products: Product[];
+  products: ProductType[];
   total: number;
   discountedTotal: number;
   userId: number;
   totalProducts: number;
   totalQuantity: number;
-};
-
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  quantity: number;
-  total: number;
-  discountPercentage: number;
-  discountedPrice: number;
-  thumbnail: string;
 };
