@@ -1,9 +1,17 @@
-import { Button, Div, Spacing, Text } from '@vkontakte/vkui';
-import { Icon24DeleteOutline } from '@vkontakte/icons';
+import { Button, ButtonGroup, Div, Spacing, Text } from '@vkontakte/vkui';
+import {
+  Icon24AddOutline,
+  Icon24DeleteOutline,
+  Icon24MinusOutline,
+} from '@vkontakte/icons';
 import { FC } from 'react';
 
 import { useAppDispatch } from 'src/hooks';
-import { deleteProduct } from 'src/store/slices/productsSlice';
+import {
+  addCount,
+  deleteProduct,
+  reduceCount,
+} from 'src/store/slices/productsSlice';
 
 import styles from './Product.module.scss';
 import { ProductProps } from './Product.types';
@@ -15,6 +23,14 @@ const Product: FC<ProductProps> = (props) => {
 
   const handleDelete = () => {
     dispatch(deleteProduct(product.id));
+  };
+
+  const handleAddCount = () => {
+    dispatch(addCount(product.id));
+  };
+
+  const handleReduceCount = () => {
+    dispatch(reduceCount(product.id));
   };
 
   return (
@@ -29,9 +45,19 @@ const Product: FC<ProductProps> = (props) => {
       <Text>В корзине: {product.quantity}</Text>
       <Text>Цена: {product.price} руб.</Text>
       <Spacing size={16} />
-      <Button onClick={handleDelete}>
-        <Icon24DeleteOutline />
-      </Button>
+      <ButtonGroup className={styles.buttons}>
+        <Button onClick={handleDelete}>
+          <Icon24DeleteOutline />
+        </Button>
+        <ButtonGroup>
+          <Button disabled={product.quantity <= 1} onClick={handleReduceCount}>
+            <Icon24MinusOutline />
+          </Button>
+          <Button disabled={product.quantity >= 10} onClick={handleAddCount}>
+            <Icon24AddOutline />
+          </Button>
+        </ButtonGroup>
+      </ButtonGroup>
     </Div>
   );
 };

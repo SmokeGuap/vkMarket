@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { ProductType } from 'src/types';
 
 type ProductsStateType = { products: ProductType[] };
@@ -14,12 +14,12 @@ export const productsSlice = createSlice({
     clearProducts: (state) => {
       state.products = initialState.products;
     },
-    setProducts: (state, action) => {
-      state.products = action.payload;
+    setProducts: (state, action: PayloadAction<ProductType[]>) => {
+      state.products = action.payload.sort((a, b) => a.id - b.id);
     },
-    deleteProduct: (state, action) => {
+    deleteProduct: (state, action: PayloadAction<number>) => {
       const findProduct = state.products.find(
-        (item: ProductType) => item.id == action.payload
+        (item) => item.id == action.payload
       );
 
       if (findProduct) {
@@ -27,15 +27,45 @@ export const productsSlice = createSlice({
           ...state.products.filter(
             (item: ProductType) => item.id !== action.payload
           ),
-          { ...findProduct, quantity: findProduct.quantity - 1 },
         ];
+      }
+    },
+    addCount: (state, action: PayloadAction<number>) => {
+      const findProduct = state.products.find(
+        (item: ProductType) => item.id == action.payload
+      );
+
+      if (findProduct) {
+        state.products = state.products.map((item: ProductType) => {
+          if (item.id !== action.payload) {
+            return item;
+          } else {
+            return { ...findProduct, quantity: findProduct.quantity + 1 };
+          }
+        });
+      }
+    },
+    reduceCount: (state, action: PayloadAction<number>) => {
+      const findProduct = state.products.find(
+        (item: ProductType) => item.id == action.payload
+      );
+
+      if (findProduct) {
+        state.products = state.products.map((item: ProductType) => {
+          if (item.id !== action.payload) {
+            return item;
+          } else {
+            return { ...findProduct, quantity: findProduct.quantity - 1 };
+          }
+        });
       }
     },
   },
 });
 
-const { clearProducts, setProducts,deleteProduct } = productsSlice.actions;
+const { clearProducts, setProducts, deleteProduct, addCount, reduceCount } =
+  productsSlice.actions;
 
-export { clearProducts, setProducts,deleteProduct };
+export { clearProducts, setProducts, deleteProduct, addCount, reduceCount };
 
 export default productsSlice.reducer;
